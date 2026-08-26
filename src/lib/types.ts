@@ -14,7 +14,7 @@ export type Category = (typeof CATEGORIES)[number];
 export interface Task {
   id: string;
   title: string;
-  description?: string;
+  description?: string | undefined;
   category: Category;
   createdAt: number;
   completedAt: number | null;

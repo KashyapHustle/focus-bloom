@@ -124,5 +124,5 @@ export const RARITY_LABEL: Record<TreeRarity, string> = {
 };
 
 export function getTree(id: string): TreeDef {
-  return TREE_MAP[id] ?? TREES[0];
+  return TREE_MAP[id] ?? (TREES[0] as TreeDef);
 }
