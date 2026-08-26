@@ -4,6 +4,7 @@ import { Coffee, Pause, Play, RotateCcw, Sparkles, Square } from "lucide-react";
 import { toast } from "sonner";
 
 import { CircularTimer } from "@/components/CircularTimer";
+import { TreeArt } from "@/components/TreeArt";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -407,19 +408,5 @@ function TimerPage() {
 }
 
 function TreeThumb({ id }: { id: string }) {
-  const tree = getTree(id);
-  return <TreeArtLazy id={tree.id} />;
+  return <TreeArt tree={getTree(id)} growth={1} showGround={false} className="size-full text-foreground" />;
 }
-
-function TreeArtLazy({ id }: { id: string }) {
-  const tree = getTree(id);
-  const { TreeArt } = require_treeart();
-  return <TreeArt tree={tree} growth={1} showGround={false} className="size-full text-foreground" />;
-}
-
-// Small helper keeps the import in one place without a circular dependency.
-function require_treeart() {
-  return TreeArtModule;
-}
-
-import * as TreeArtModule from "@/components/TreeArt";
