@@ -68,7 +68,28 @@ export function CircularTimer({ tree, remainingMs, progress, status, label }: Pr
             status === "running" ? "animate-sway" : ""
           }`}
         />
+
+        {running && (
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            {PARTICLES.map((particle) => (
+              <span
+                key={particle.left}
+                className="focus-particle"
+                style={{
+                  left: particle.left,
+                  bottom: "-6%",
+                  width: particle.size,
+                  height: particle.size,
+                  opacity: particle.opacity,
+                  animationDelay: particle.delay,
+                  animationDuration: particle.duration,
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
+
 
       <div className="absolute inset-x-0 top-[26%] flex flex-col items-center">
         <span
