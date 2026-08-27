@@ -188,3 +188,62 @@
     animation: none;
   }
 }
+
+/* --- Focus timer ambient states --- */
+@keyframes focus-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.985);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.015);
+  }
+}
+
+.timer-glow {
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklab, var(--color-primary) 26%, transparent) 0%,
+    color-mix(in oklab, var(--color-primary) 10%, transparent) 55%,
+    transparent 72%
+  );
+  filter: blur(14px);
+  animation: focus-glow 6s ease-in-out infinite;
+}
+
+@keyframes focus-drift {
+  0% {
+    transform: translateY(6%) scale(0.9);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-46%) scale(1.05);
+    opacity: 0;
+  }
+}
+
+.focus-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  animation: focus-drift linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timer-glow,
+  .focus-particle {
+    animation: none;
+  }
+  .focus-particle {
+    opacity: 0.35;
+  }
+}
