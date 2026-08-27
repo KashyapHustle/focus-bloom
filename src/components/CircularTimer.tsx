@@ -14,12 +14,29 @@ const SIZE = 320;
 const R = 142;
 const C = 2 * Math.PI * R;
 
+const PARTICLES = [
+  { left: "18%", size: 4, delay: "0s", duration: "13s", opacity: 0.5 },
+  { left: "34%", size: 3, delay: "3.5s", duration: "16s", opacity: 0.4 },
+  { left: "52%", size: 5, delay: "1.8s", duration: "14.5s", opacity: 0.35 },
+  { left: "68%", size: 3, delay: "6s", duration: "17s", opacity: 0.45 },
+  { left: "82%", size: 4, delay: "8.5s", duration: "15s", opacity: 0.3 },
+];
+
 export function CircularTimer({ tree, remainingMs, progress, status, label }: Props) {
   const p = Math.min(1, Math.max(0, progress));
+  const running = status === "running";
 
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[min(85vw,360px)]">
+      <div
+        aria-hidden
+        className={`pointer-events-none absolute -inset-3 transition-opacity duration-700 ${
+          running ? "timer-glow opacity-100" : "opacity-0"
+        }`}
+      />
+
       <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="absolute inset-0 size-full -rotate-90">
+
         <circle
           cx={SIZE / 2}
           cy={SIZE / 2}
